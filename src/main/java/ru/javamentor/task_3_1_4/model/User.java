@@ -1,14 +1,8 @@
 package ru.javamentor.task_3_1_4.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.springframework.stereotype.Component;
-
 import java.io.Serializable;
 
-
-@SuppressWarnings("serial")
-@JsonSerialize
-public class User  implements Serializable {
+public class User   {
     private Long id;
     private String name;
     private String lastName;
