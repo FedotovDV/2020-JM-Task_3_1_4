@@ -26,9 +26,9 @@ public class Task314Application {
         HttpEntity<String> request;
         String json;
         ResponseEntity<String> responseEntity;
+        StringBuilder code = new StringBuilder();
 
-        ResponseEntity<String> response
-                = restTemplate.getForEntity(url, String.class);
+
         HttpHeaders httpHeaders = restTemplate.headForHeaders(url);
         String cookieHeader = httpHeaders.getFirst(HttpHeaders.SET_COOKIE);
 
@@ -41,17 +41,17 @@ public class Task314Application {
         request = new HttpEntity<>(json, myHeaders);
         responseEntity = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
 
-        String code = responseEntity.toString().substring(5, 11);
+        code.append(responseEntity.toString().substring(5, 11));
         user.setName("Thomas");
         user.setLastName("Shelby");
         json = objectMapper.writeValueAsString(user);
         request = new HttpEntity<>(json, myHeaders);
         responseEntity = restTemplate.exchange(url, HttpMethod.PUT, request, String.class);
-        code = code + responseEntity.toString().substring(5, 11);
+        code.append(responseEntity.toString().substring(5, 11));
 
         responseEntity = restTemplate.exchange(url + "/" + user.getId(), HttpMethod.DELETE, request, String.class);
-        code = code + responseEntity.toString().substring(5, 11);
-        System.out.println(code);  //5ebfebe7cb975dfcf9
+        code.append(responseEntity.toString().substring(5, 11));
+        System.out.println(code);
 
     }
 
